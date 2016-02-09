@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/09 08:10:42 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/02/09 08:29:14 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_env
 	int		fd;
 	int		key_up;
 	int		key_down;
+	int		init;
 }					t_env;
 
 
@@ -56,4 +57,5 @@ void		print_mlx(t_env env, char **map, int x);
 int			key_hook(int keycode, t_env param);
 //void		ft_put_pixel(t_env mlx, int x, int y, int z);
 void	ft_draw_pixel(t_env s);
+void	check_line(t_env s);
 #endif
