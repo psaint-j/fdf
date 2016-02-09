@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/02 14:39:05 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/02/09 08:10:42 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ void		ft_print_tab(char **tab);
 void		print_mlx(t_env env, char **map, int x);
 int			key_hook(int keycode, t_env param);
 //void		ft_put_pixel(t_env mlx, int x, int y, int z);
+void	ft_draw_pixel(t_env s);
 #endif
