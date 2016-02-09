@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/09 08:29:14 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:22:05 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #define BUF_SIZE 2048
 #define WIDTH 800
 #define HEIGHT 600
-#define MARGIN 6
+#define MARGIN 20
 
 typedef struct		s_env
 {
@@ -43,7 +43,7 @@ typedef struct		s_env
 	int		fd;
 	int		key_up;
 	int		key_down;
-	int		init;
+	int		k;
 }					t_env;
 
 
