@@ -17,7 +17,7 @@ SRC = ./src/*.c\
 OBJ = $(SRC:.c:.o)
 
 FLAGS = -Wall -Werror -Wextra
-MLX = -I./mlx/ -lmlx -framework openGL -framework appKit
+MLX = -L./mlx -lmlx -framework openGL -framework appKit
 all : $(NAME)
 
 $(NAME):
