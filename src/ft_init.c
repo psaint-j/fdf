@@ -12,36 +12,55 @@
 
 #include "fdf.h"
 
-t_var	*init_tab(char *str, t_var *e)
+t_env	init_env(t_env env)
 {
-	e->tab_tmp = ft_strsplit(str, ' ');
-	while (e->tab_tmp != '\0')
-	{
-	//	e->map[e->j][e->i] = e->tab_tmp[e->i][0];
-		e->i++;
-	}
-	return (e);
+	env.mlx = mlx_init();
+	env.win = mlx_new_window(env.mlx,WIDTH, HEIGHT,"Fdf" );
+	env.x = 0;
+	env.y = 0;
+	env.i = 0;
+	env.j = 0;
+	env.xmax = 0;
+	env.ymax = 0;
+//	env.map = malloc(1000);
+	env.tab_tmp = NULL;
+	env.e_y = 0;
+	env.e_x = 0;
+	env.fd = 0;
+	env.key_up = 0;
+	env.key_down = 0;
+	return (env);
 }
 
-t_var	*init_var(t_var *e)
+t_env	init_map(t_env env)
 {
-	e->i = 0;
-	e->j = 0;
-	e->xmax = 0;
-	e->ymax = 0;
-	return(e);
+	int		size;
+
+	if (env.xmax > env.ymax)
+		size = env.xmax;
+	else
+		size = env.ymax;
+	env.map = malloc(size * size * size);
+	return (env);
 }
 
-void	ft_tabstr(char **tab, int y, char ***map)
+t_env	check_params(t_env env,char *file)
 {
-	int		i;
+	char	*line;
+	int		fd;
+	int		len;
 
-	i = 0;
-	while (tab[i])
+	len = 0;
+	fd = open(file, O_RDONLY);
+	while (get_next_line(fd, &line) > 0)
 	{
-		map[y][i] = tab[i];
-		i++;
+		if (len < (int)ft_strlen(line))
+			len = ft_strlen(line);
+		env.ymax++;
 	}
+	close(fd);
+	env.xmax = len;
+	return (env);
 }
 
 void	ft_print_tab(char **tab)
@@ -55,29 +74,4 @@ void	ft_print_tab(char **tab)
 		ft_putstr("\t");
 		i++;
 	}
-}
-
-void		print_mlx(t_env env, char **map, int x)
-{
-	int		y;
-	int		tmp_x;
-	int		tmp_y;
-	int		e_x;
-	int		e_y;
-
-	y  = 0;
-	e_y = 0;
-	e_x = 0;
-	while (map[y])
-	{
-		tmp_y = y + e_y;
-		tmp_x = x + e_x;
-		//mlx_pixel_put(env.mlx, env.win, x, y, 0xFFFFFF);
-		mlx_pixel_put(env.mlx, env.win, x + 250, y + 350, 0xFFFFFF);
-		//ft_put_pixel(env, x, tmp_y, map[y]);
-		y++;
-		e_x = e_x + 10;
-		e_y = e_y + 10;
-	}
-	y = 0;
 }

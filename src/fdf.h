@@ -22,16 +22,9 @@
 #include "../mlx/mlx.h"
 
 #define BUF_SIZE 2048
-
-typedef struct		s_var
-{
-	int		i;
-	int		j;
-	int		xmax;
-	int		ymax;
-	char	***map;
-	char	**tab_tmp;
-}					t_var;
+#define WIDTH 800
+#define HEIGHT 600
+#define MARGIN 6
 
 typedef struct		s_env
 {
@@ -39,15 +32,27 @@ typedef struct		s_env
 	void	*win;
 	int		x;
 	int		y;
+	int		i;
+	int		j;
+	int		xmax;
+	int		ymax;
+	char	***map;
+	char	**tab_tmp;
+	int		e_y;
+	int		e_x;
+	int		fd;
+	int		key_up;
+	int		key_down;
 }					t_env;
 
 
 //initialise les valeur X = 0 or NULL
-t_var		*init_var(t_var *e);
-t_var		*init_tab(char *str, t_var *e);
+t_env		init_map(t_env env);
+t_env		init_env(t_env env);
+t_env		check_params(t_env env, char *file);
 void		ft_tabstr(char **z, int y, char ***map);
 void		ft_print_tab(char **tab);
 void		print_mlx(t_env env, char **map, int x);
+int			key_hook(int keycode, t_env param);
 //void		ft_put_pixel(t_env mlx, int x, int y, int z);
-void	ft_put_pixel(t_env mlx, int x, int y, char *z);
 #endif
