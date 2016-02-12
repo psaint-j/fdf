@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/09 14:22:05 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:36:35 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 #include "../mlx/mlx.h"
 
 #define BUF_SIZE 2048
-#define WIDTH 800
-#define HEIGHT 600
-#define MARGIN 20
+#define WIDTH 900
+#define HEIGHT 900
+#define MARGIN 30
 
 typedef struct		s_env
 {
@@ -44,6 +44,8 @@ typedef struct		s_env
 	int		key_up;
 	int		key_down;
 	int		k;
+	float	isoX;
+	float	isoY;
 }					t_env;
 
 

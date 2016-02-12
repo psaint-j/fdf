@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 11:03:37 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/09 13:50:53 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/02/11 15:36:39 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_env	init_env(t_env env)
 	env.y = 0;
 	env.i = 0;
 	env.j = 0;
-	env.k = 0;
+	env.k = MARGIN;
 	env.xmax = 0;
 	env.ymax = 0;
 //	env.map = malloc(1000);
@@ -30,6 +30,8 @@ t_env	init_env(t_env env)
 	env.fd = 0;
 	env.key_up = 3;
 	env.key_down = 3;
+	env.isoX = 0;
+	env.isoY = 0;
 	return (env);
 }
 
