@@ -6,7 +6,7 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/12 12:52:18 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/02/15 19:11:39 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	ft_draw_pixel(t_env s)
 			//s.i = ft_atoi(s.map[s.x][s.y]);
 			//if (s.i <= 0)
 			//{
-			while (s.j < MARGIN)
-			{
-				s.isoY = (s.e_x - s.e_y);
+			//while (s.j < MARGIN)
+			//{
+				s.isoY = (s.e_y - s.e_x);
 				s.isoX = ((s.e_x + s.e_y)/2);
 				mlx_pixel_put(s.mlx, s.win, s.j + s.isoY + WIDTH/3, s.isoX, 0xFFFFF);
 				mlx_pixel_put(s.mlx, s.win, s.isoY + WIDTH/3, s.isoX + s.j, 0xFFFFF);
@@ -57,7 +57,7 @@ void	ft_draw_pixel(t_env s)
 				mlx_pixel_put(s.mlx, s.win, s.j + s.isoY + WIDTH/3, s.isoX + MARGIN, 0xFFFFF);
 				mlx_pixel_put(s.mlx, s.win, s.isoY + WIDTH/3 + MARGIN, s.isoX + s.j, 0xFFFFF);
 				s.j++;
-			}
+		//	}
 			s.j = 0;
 			/*	}
 				else
