@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/11 15:36:35 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/02/22 18:01:33 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 #define BUF_SIZE 2048
 #define WIDTH 900
 #define HEIGHT 900
-#define MARGIN 30
+#define MARGIN 20
+#define YOUSSOF 70
 
 typedef struct		s_env
 {
@@ -53,6 +54,7 @@ typedef struct		s_env
 t_env		init_map(t_env env);
 t_env		init_env(t_env env);
 t_env		check_params(t_env env, char *file);
+void		ft_line2(int x1, int y1, int x2, int y2, t_env all);
 void		ft_tabstr(char **z, int y, char ***map);
 void		ft_print_tab(char **tab);
 void		print_mlx(t_env env, char **map, int x);
