@@ -6,7 +6,7 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/22 18:05:20 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/02/26 14:50:02 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						while ((y1 = y1 - 1) != y2)
 						{
 							mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
-							if ((e = e + dx) < 0)
+							if ((e = e - dx) < 0)
 							{
 								x1 = x1 + 1;
-								e = e + dy;
+								e = e - dy;
 							}
 						}
 					}
@@ -177,7 +177,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 			else // dy = 0 and dx < 0
 			{
 				while ((x1 = x1 - 1) != x2)
-					mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);					
+					mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
 			}
 		}
 	}
@@ -199,52 +199,50 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 	}
 }
 
+t_env	init_point(t_env s)
+{
+	s.x = (s.e_y - s.e_x);
+	s.y = (s.e_x + s.e_y)/2;
+	//x1
+	s.x1 = (s.e_y - (s.e_x + 20));
+	s.y1 = ((s.e_x + 20) + s.e_y)/2;
+	//x2
+	s.x2 = ((s.e_y + 20) - s.e_x);
+	s.y2 = (s.e_x + (s.e_y + 20))/2;
+	//x3
+	s.x3 = ((s.e_y + 20) - (s.e_x + 20));
+	s.y3 = ((s.e_x + 20) + (s.e_y + 20))/2;
+	return (s);
+}
+
 void	ft_draw_pixel(t_env s)
 {
-	s.key_up = 3;
-	s.key_down = 3;
+	int		z;
 
-	while (s.map[s.x][s.y])
+	while (s.map[s.y_tab])
 	{
-		while (s.map[s.x])
+		while (s.map[s.y_tab][s.x_tab])
 		{
-			//s.i = ft_atoi(s.map[s.x][s.y]);
-			//if (s.i <= 0)
-			//{
-			//while (s.j < MARGIN)
-			//{
-			s.isoY = (s.e_y - s.e_x);
-			s.isoX = ((s.e_x + s.e_y)/2);
-			ft_line2(s.isoY + 250, s.isoX + 50, s.isoY + 270, s.isoX + 60, s);
-			ft_line2(s.isoY + 270, s.isoX + 40, s.isoY + 250, s.isoX + 50, s);
-			//mlx_pixel_put(s.mlx, s.win, s.isoY + WIDTH/3, s.isoX, 0xFFFFF);
-			//mlx_pixel_put(s.mlx, s.win, s.isoY + WIDTH/3, s.isoX + s.j, 0xFFFFF);
-			//other side
-			//mlx_pixel_put(s.mlx, s.win, s.j + s.isoY + WIDTH/3, s.isoX + MARGIN, 0xFFFFF);
-			//mlx_pixel_put(s.mlx, s.win, s.isoY + WIDTH/3 + MARGIN, s.isoX + s.j, 0xFFFFF);
-			//s.j++;
-			//	}
-			//s.j = 0;
-			/*	}
-				else
-				{
-				while (s.j < MARGIN)
-				{
-				mlx_pixel_put(s.mlx, s.win, s.j + s.e_y + WIDTH/U, s.e_x, 0xFF0000);
-				mlx_pixel_put(s.mlx, s.win, s.e_y + WIDTH/U, s.e_x + s.j, 0xFF0000);
-			//other side
-			mlx_pixel_put(s.mlx, s.win, s.j + s.e_y + WIDTH/U, s.e_x + MARGIN, 0xFF0000);
-			mlx_pixel_put(s.mlx, s.win, s.e_y + WIDTH/U + MARGIN, s.e_x + s.j, 0xFF0000);
-			s.j++;
-			}
-			s.j = 0;
-			}*/
-			s.x++;
+			z = ft_atoi(s.map[s.y_tab][s.x_tab]);
+			s = init_point(s);
+			//trace
+			ft_line2(s.x + 270, s.y + 40, s.x1 + 250, s.y1 + 50, s);
+			ft_line2(s.x3 + 270, s.y3 + 40, s.x + 250, s.y + 50, s);
+			ft_line2(s.x2 + 270, s.y2 + 40, s.x3 + 250, s.y3 + 50, s);
+			ft_line2(s.x3 + 270, s.y3 + 40, s.x + 250, s.y + 50, s);
 			s.e_x = s.e_x + (MARGIN);
+			s.x_tab++;
 		}
-		s.e_x = 0;
-		s.x = 0;
-		s.y++;
 		s.e_y = s.e_y + (MARGIN);
+		s.e_x = 0;
+		s.x_tab = 0;
+		s.y_tab++;
 	}
 }
+
+//ft_line2(s.z_y + 250, s.z_x + 50, s.z_y + 270, s.z_x + 60, s);
+//ft_line2(s.z_y + 270, s.z_x + 40, s.z_y + 250, s.z_x + 50, s);
+//y2 = s.isoY;
+//x2 = s.isoX;
+//x3 = (s.e_y + 20 - s.e_x);
+//y3 = ((s.e_x + s.e_y + 20)/2);

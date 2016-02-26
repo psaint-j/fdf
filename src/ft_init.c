@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 11:03:37 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/11 15:36:39 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/02/26 13:42:00 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_env	init_env(t_env env)
 {
 	env.mlx = mlx_init();
 	env.win = mlx_new_window(env.mlx,WIDTH, HEIGHT,"Fdf" );
-	env.x = 0;
-	env.y = 0;
+	env.x_tab = 0;
+	env.y_tab = 0;
 	env.i = 0;
 	env.j = 0;
 	env.k = MARGIN;
@@ -32,6 +32,8 @@ t_env	init_env(t_env env)
 	env.key_down = 3;
 	env.isoX = 0;
 	env.isoY = 0;
+	env.z_x = 0;
+	env.z_y = 0;
 	return (env);
 }
 

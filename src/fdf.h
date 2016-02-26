@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/22 18:01:33 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/02/26 13:42:51 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@
 #define WIDTH 900
 #define HEIGHT 900
 #define MARGIN 20
-#define YOUSSOF 70
+//Constantes 0.5 et 1
+#define C1 0.75
+#define C2 0.75
 
 typedef struct		s_env
 {
 	void	*mlx;
 	void	*win;
-	int		x;
-	int		y;
+	int		x_tab;
+	int		y_tab;
 	int		i;
 	int		j;
 	int		xmax;
@@ -47,6 +49,16 @@ typedef struct		s_env
 	int		k;
 	float	isoX;
 	float	isoY;
+	float	z_x;
+	float	z_y;
+	float	x;
+	float	y;
+	float	x1;
+	float	y1;
+	float	x2;
+	float	y2;
+	float	x3;
+	float	y3;
 }					t_env;
 
 
