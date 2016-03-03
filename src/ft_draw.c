@@ -6,7 +6,7 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/26 14:50:02 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/03 16:25:11 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,11 +207,11 @@ t_env	init_point(t_env s)
 	s.x1 = (s.e_y - (s.e_x + 20));
 	s.y1 = ((s.e_x + 20) + s.e_y)/2;
 	//x2
-	s.x2 = ((s.e_y + 20) - s.e_x);
-	s.y2 = (s.e_x + (s.e_y + 20))/2;
+	s.x3 = ((s.e_y + 20) - s.e_x);
+	s.y3 = (s.e_x + (s.e_y + 20))/2;
 	//x3
-	s.x3 = ((s.e_y + 20) - (s.e_x + 20));
-	s.y3 = ((s.e_x + 20) + (s.e_y + 20))/2;
+	s.x2 = ((s.e_y + 20) - (s.e_x + 20));
+	s.y2 = ((s.e_x + 20) + (s.e_y + 20))/2;
 	return (s);
 }
 
@@ -226,10 +226,20 @@ void	ft_draw_pixel(t_env s)
 			z = ft_atoi(s.map[s.y_tab][s.x_tab]);
 			s = init_point(s);
 			//trace
-			ft_line2(s.x + 270, s.y + 40, s.x1 + 250, s.y1 + 50, s);
-			ft_line2(s.x3 + 270, s.y3 + 40, s.x + 250, s.y + 50, s);
-			ft_line2(s.x2 + 270, s.y2 + 40, s.x3 + 250, s.y3 + 50, s);
-			ft_line2(s.x3 + 270, s.y3 + 40, s.x + 250, s.y + 50, s);
+			if (s.map[s.y_tab][s.x_tab + 1])
+			{
+				//ft_line2(s.x + 270, s.y + 40, s.x1 + 250, s.y1 + 50, s);
+				ft_line2(s.x, s.y, s.x1, s.y1, s);
+				ft_line2(s.x3, s.y3, s.x2, s.y2, s);
+				ft_line2(s.x3, s.y3, s.x, s.y, s);
+				ft_line2(s.x2, s.y2, s.x, s.y, s);
+				//ft_line2(s.x3 + 270, s.y3 + 40, s.x2 + 250, s.y2 + 50, s);
+				//ft_line2(s.x + 270, s.y + 40, s.x2 + 250, s.y2 + 50, s);
+				//ft_line2(s.x3 + 270, s.y3 + 40, s.x1 + 250, s.y1 + 50, s);
+			}
+			else
+				break;
+		//v2/ft_line2(s.x3 + 270, s.y3 + 40, s.x + 250, s.y + 50, s);
 			s.e_x = s.e_x + (MARGIN);
 			s.x_tab++;
 		}

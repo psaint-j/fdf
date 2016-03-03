@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/02/26 13:42:51 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/03 15:44:26 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ typedef struct		s_env
 	float	x3;
 	float	y3;
 }					t_env;
+
+typedef struct		s_coord
+{
+	int		x;
+	int		y;
+	int		z;
+}					t_coord;
 
 
 //initialise les valeur X = 0 or NULL
