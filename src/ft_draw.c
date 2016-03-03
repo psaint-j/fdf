@@ -6,7 +6,7 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/03 16:25:11 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/03 17:18:54 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #define U s.key_up
 #define D s.key_down
 
+void	ft_put_pixel(t_env env, int x, int y)
+{
+	mlx_pixel_put(env.mlx, env.win, x + WIDTH/3, y + HEIGHT/3, 0xFFFFFFF);
+}
 
 void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 {
@@ -38,7 +42,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dy = dy * 2;
 						while (x1 != x2)
 						{
-							mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+							ft_put_pixel(all, x1, y1);
 							if ((e = e - dy) < 0)
 							{
 								y1 = y1 + 1;
@@ -54,7 +58,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dx = dx * 2;
 						while (++y1 != y2)
 						{
-							mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+							ft_put_pixel(all, x1, y1);
 							if ((e = e - dx) < 0)
 							{
 								x1 = x1 + 1;
@@ -72,7 +76,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dy = dy * 2;
 						while ((x1 = x1 + 1) != x2)
 						{
-							mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+							ft_put_pixel(all, x1, y1);
 							if ((e = e + dy) < 0)
 							{
 								y1 = y1 - 1;
@@ -87,7 +91,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dx = dx * 2;
 						while ((y1 = y1 - 1) != y2)
 						{
-							mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+							ft_put_pixel(all, x1, y1);
 							if ((e = e - dx) < 0)
 							{
 								x1 = x1 + 1;
@@ -100,7 +104,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 			else
 			{
 				while ((x1 = x1 + 1) != x2)
-					mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+					ft_put_pixel(all, x1, y1);
 			}
 		}
 		else
@@ -116,7 +120,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dy = dy * 2;
 						while ((x1 = x1 - 1) != x2)
 						{
-							mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+							ft_put_pixel(all, x1, y1);
 							if ((e = e + dy) != 0)
 							{
 								y1 = y1 + 1;
@@ -131,7 +135,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dx = dx * 2;
 						while ((y1 = y1 + 1) != y2)
 						{
-							mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+							ft_put_pixel(all, x1, y1);
 							if ((e = e + dx) != 0)
 							{
 								x1 = x1 - 1;
@@ -149,7 +153,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dy = dy * 2;
 						while ((x1  = x1 - 1) != x2)
 						{
-							mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+							ft_put_pixel(all, x1, y1);
 							if ((e = e - dy) >= 0)
 							{
 								y1 = y1 - 1;
@@ -164,7 +168,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dx = dx * 2;
 						while ((y1  = y1 - 1) != y2)
 						{
-							mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+							ft_put_pixel(all, x1, y1);
 							if ((e = e - dx) >= 0)
 							{
 								x1 = x1 - 1;
@@ -177,7 +181,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 			else // dy = 0 and dx < 0
 			{
 				while ((x1 = x1 - 1) != x2)
-					mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+					ft_put_pixel(all, x1, y1);
 			}
 		}
 	}
@@ -188,12 +192,12 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 			if (dy > 0)
 			{
 				while ((y1 = y1 + 1) != y2)
-					mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+					ft_put_pixel(all, x1, y1);
 			}
 			else // dy < 0 and dx = 0
 			{
 				while ((y1 = y1 - 1) != y2)
-					mlx_pixel_put(all.mlx, all.win, x1, y1, 0xFFFFFFF);
+					ft_put_pixel(all, x1, y1);
 			}
 		}
 	}
@@ -219,27 +223,15 @@ void	ft_draw_pixel(t_env s)
 {
 	int		z;
 
+	z = 0;
 	while (s.map[s.y_tab])
 	{
 		while (s.map[s.y_tab][s.x_tab])
 		{
 			z = ft_atoi(s.map[s.y_tab][s.x_tab]);
 			s = init_point(s);
-			//trace
-			if (s.map[s.y_tab][s.x_tab + 1])
-			{
-				//ft_line2(s.x + 270, s.y + 40, s.x1 + 250, s.y1 + 50, s);
-				ft_line2(s.x, s.y, s.x1, s.y1, s);
-				ft_line2(s.x3, s.y3, s.x2, s.y2, s);
-				ft_line2(s.x3, s.y3, s.x, s.y, s);
-				ft_line2(s.x2, s.y2, s.x, s.y, s);
-				//ft_line2(s.x3 + 270, s.y3 + 40, s.x2 + 250, s.y2 + 50, s);
-				//ft_line2(s.x + 270, s.y + 40, s.x2 + 250, s.y2 + 50, s);
-				//ft_line2(s.x3 + 270, s.y3 + 40, s.x1 + 250, s.y1 + 50, s);
-			}
-			else
-				break;
-		//v2/ft_line2(s.x3 + 270, s.y3 + 40, s.x + 250, s.y + 50, s);
+				ft_line2(s.x, s.y - (z * 10), s.x1, s.y1 - (z * 10), s);
+				ft_line2(s.x1, s.y1 - (z * 10), s.x2, s.y2 - (z * 10), s);
 			s.e_x = s.e_x + (MARGIN);
 			s.x_tab++;
 		}
