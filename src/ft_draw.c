@@ -6,7 +6,7 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/04 08:35:57 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/04 19:07:57 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,47 @@ void	pixel_put(t_env env, int x, int y)
 		mlx_pixel_put(env.mlx, env.win, x, y, MAJENTA);
 }
 
+/*void    draw_line2(t_env env, int x, int y, int x2, int y2)
+{
+	int         i;
+	t_bresenham bres;
+
+	i = 0;
+	bres = init_bresenham(bres);
+	bres.w = x2 - x;
+	bres.h = y2 - y;
+	if (bres.w < 0) bres.dx1 = -1; else if (bres.w > 0) bres.dx1 = 1;
+	if (bres.h < 0) bres.dy1 = -1; else if (bres.h > 0) bres.dy1 = 1;
+	if (bres.w < 0) bres.dx2 = -1; else if (bres.w > 0) bres.dx2 = 1;
+	bres.longest = ft_abs(bres.w);
+	bres.shortest = ft_abs(bres.h);
+	if (!(bres.longest > bres.shortest))
+	{
+		bres.longest = ft_abs(bres.h);
+		bres.shortest = ft_abs(bres.w);
+		if (bres.h < 0) bres.dy2 = -1; else if (bres.h > 0) bres.dy2 = 1;
+		bres.dx2 = 0;
+	}
+	bres.numerator = bres.longest >> 1;
+	while (i <= bres.longest)
+	{
+		pixel_put(env, x, y);
+		bres.numerator += bres.shortest;
+		if (!(bres.numerator<bres.longest))
+		{
+			bres.numerator -= bres.longest;
+			x += bres.dx1;
+			y += bres.dy1;
+		}
+		else
+		{
+			x += bres.dx2;
+			y += bres.dy2;
+		}
+		i++;
+	}
+}
+*/
 void		draw_line(t_env env, int y1, int x1, int y2, int x2)
 {
 	int dx;
@@ -211,38 +252,69 @@ void		draw_line(t_env env, int y1, int x1, int y2, int x2)
 	}
 }
 
+int		find_z(t_env s, int z)
+{
+	if (z == 0)
+	{
+		if(s.map[s.y_tab][s.x_tab])
+			return (ft_atoi(s.map[s.y_tab][s.x_tab]));
+	}
+	if (z == 1)
+	{
+		if(s.map[s.y_tab][s.x_tab + 1])
+			return (ft_atoi(s.map[s.y_tab][s.x_tab + 1]));
+	}
+	if (z == 3)
+	{
+		if (s.map[s.y_tab + 1] != NULL)
+		{
+			if(s.map[s.y_tab + 1][s.x_tab])
+				return (ft_atoi(s.map[s.y_tab + 1][s.x_tab]));
+		}
+	}
+	return(0);
+}
+
 t_env	init_point(t_env s)
 {
-	s.x = (s.e_y + s.e_x)/2;
-	s.y = (s.e_y - s.e_x);
+	//ft_putnbr(z);
+	s.x = (s.e_y - s.e_x);
+	if (find_z(s, 0) > 0)
+		s.y = ((s.e_y + s.e_x)/2) - find_z(s, 0)*3;
+	else
+		s.y = ((s.e_y + s.e_x)/2) + find_z(s, 0)*3;
 	//x1
-	s.x1 = (s.e_y - (s.e_x + 20));
-	s.y1 = ((s.e_x + 20) + s.e_y)/2;
+	s.x1 = (s.e_y - (s.e_x + MARGIN));
+	if (find_z(s, 0) > 0)
+		s.y1 = (((s.e_x + MARGIN) + s.e_y)/2) - find_z(s, 1)*3;
+	else
+		s.y1 = (((s.e_x + MARGIN) + s.e_y)/2) + find_z(s, 1)*3;
 	//x2
-	s.x3 = ((s.e_y + 20) - s.e_x);
-	s.y3 = (s.e_x + (s.e_y + 20))/2;
+	s.x3 = ((s.e_y + MARGIN) - s.e_x);
+	if (find_z(s, 0) > 0)
+		s.y3 = ((s.e_x + (s.e_y + MARGIN))/2) - find_z(s, 3)*3;
+	else
+		s.y3 = ((s.e_x + (s.e_y + MARGIN))/2) + find_z(s, 3)*3;
 	//x3
-	s.x2 = ((s.e_y + 20) - (s.e_x + 20));
-	s.y2 = ((s.e_x + 20) + (s.e_y + 20))/2;
+	s.x2 = ((s.e_y + MARGIN) - (s.e_x + MARGIN));
+	s.y2 = ((s.e_x + MARGIN) + (s.e_y + MARGIN))/2;
 	return (s);
 }
 
 void	ft_draw_pixel(t_env s)
 {
-	int		z;
-	int		x_tmp;
-	int		y_tmp;
-
 	while (s.map[s.y_tab])
 	{
 		while (s.map[s.y_tab][s.x_tab])
 		{
-			z = ft_atoi(s.map[s.y_tab][s.x_tab]);
-			x_tmp = s.x;
-			y_tmp = s.y;
-			s.x = (s.e_x + s.e_y)/2;
-			s.y = (s.e_y - s.e_x);
-			draw_line(s, s.x + 50, s.y + 250 - z*3, x_tmp + 60, y_tmp + 270 - z*3);
+			/*x_tmp = s.x;
+			  y_tmp = s.y;
+			  s.x = (s.e_y - s.e_x);
+			  s.y = ((s.e_y + s.e_x)/2) - z*3;*/
+			s = init_point(s);
+			draw_line(s, s.y + HEIGHT/2, -s.x + WIDTH/3, s.y1 + HEIGHT/2, -s.x1 + WIDTH/3);
+			//draw_line(s, s.y + HEIGHT/2, -s.x + WIDTH/3, y_tmp + HEIGHT/2, -x_tmp + WIDTH/3);
+			draw_line(s, s.y + HEIGHT/2, -s.x + WIDTH/3, s.y3 + HEIGHT/2, -s.x3 + WIDTH/3);
 			s.e_x += MARGIN;
 			s.x_tab++;
 		}
