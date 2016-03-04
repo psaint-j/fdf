@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/03 17:03:47 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/04 07:41:44 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 #define BUF_SIZE 2048
 #define WIDTH 900
-#define HEIGHT 900
+#define HEIGHT 700
 #define MARGIN 20
 //Constantes 0.5 et 1
 #define C1 0.75

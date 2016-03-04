@@ -6,20 +6,28 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/03 17:18:54 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/04 08:35:57 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./fdf.h"
 #define U s.key_up
 #define D s.key_down
+# define WHITE 0x00FFFFFF
+# define MAJENTA 0x0FF1493
+# define CYAN 0x0FFFF
 
-void	ft_put_pixel(t_env env, int x, int y)
+void	pixel_put(t_env env, int x, int y)
 {
-	mlx_pixel_put(env.mlx, env.win, x + WIDTH/3, y + HEIGHT/3, 0xFFFFFFF);
+	if (ft_strncmp(env.map[env.y_tab][env.x_tab], "0", 1) == 0)
+		mlx_pixel_put(env.mlx, env.win, x, y, WHITE);
+	else if (ft_strncmp(env.map[env.y_tab][env.x_tab], "-", 1) == 0)
+		mlx_pixel_put(env.mlx, env.win, x, y, CYAN);
+	else
+		mlx_pixel_put(env.mlx, env.win, x, y, MAJENTA);
 }
 
-void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
+void		draw_line(t_env env, int y1, int x1, int y2, int x2)
 {
 	int dx;
 	int dy;
@@ -27,7 +35,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 
 	dx = x2 - x1;
 	dy = y2 - y1;
-	if (	dx != 0)
+	if (dx != 0)
 	{
 		if (dx > 0)
 		{
@@ -42,14 +50,14 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dy = dy * 2;
 						while (x1 != x2)
 						{
-							ft_put_pixel(all, x1, y1);
+							pixel_put(env, x1, y1);
 							if ((e = e - dy) < 0)
 							{
 								y1 = y1 + 1;
 								e = e + dx;
 							}
 							++x1;
-						}
+						}	
 					}
 					else
 					{
@@ -58,7 +66,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dx = dx * 2;
 						while (++y1 != y2)
 						{
-							ft_put_pixel(all, x1, y1);
+							pixel_put(env, x1, y1);
 							if ((e = e - dx) < 0)
 							{
 								x1 = x1 + 1;
@@ -76,7 +84,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dy = dy * 2;
 						while ((x1 = x1 + 1) != x2)
 						{
-							ft_put_pixel(all, x1, y1);
+							pixel_put(env, x1, y1);
 							if ((e = e + dy) < 0)
 							{
 								y1 = y1 - 1;
@@ -91,7 +99,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dx = dx * 2;
 						while ((y1 = y1 - 1) != y2)
 						{
-							ft_put_pixel(all, x1, y1);
+							pixel_put(env, x1, y1);
 							if ((e = e - dx) < 0)
 							{
 								x1 = x1 + 1;
@@ -104,7 +112,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 			else
 			{
 				while ((x1 = x1 + 1) != x2)
-					ft_put_pixel(all, x1, y1);
+					pixel_put(env, x1, y1);
 			}
 		}
 		else
@@ -120,7 +128,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dy = dy * 2;
 						while ((x1 = x1 - 1) != x2)
 						{
-							ft_put_pixel(all, x1, y1);
+							pixel_put(env, x1, y1);
 							if ((e = e + dy) != 0)
 							{
 								y1 = y1 + 1;
@@ -135,7 +143,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dx = dx * 2;
 						while ((y1 = y1 + 1) != y2)
 						{
-							ft_put_pixel(all, x1, y1);
+							pixel_put(env, x1, y1);
 							if ((e = e + dx) != 0)
 							{
 								x1 = x1 - 1;
@@ -153,7 +161,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dy = dy * 2;
 						while ((x1  = x1 - 1) != x2)
 						{
-							ft_put_pixel(all, x1, y1);
+							pixel_put(env, x1, y1);
 							if ((e = e - dy) >= 0)
 							{
 								y1 = y1 - 1;
@@ -168,7 +176,7 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 						dx = dx * 2;
 						while ((y1  = y1 - 1) != y2)
 						{
-							ft_put_pixel(all, x1, y1);
+							pixel_put(env, x1, y1);
 							if ((e = e - dx) >= 0)
 							{
 								x1 = x1 - 1;
@@ -178,26 +186,26 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 					}
 				}
 			}
-			else // dy = 0 and dx < 0
+			else
 			{
 				while ((x1 = x1 - 1) != x2)
-					ft_put_pixel(all, x1, y1);
+					pixel_put(env, x1, y1);
 			}
 		}
 	}
-	else // dx = 0
+	else
 	{
 		if ((dy = y2 - y1) != 0)
 		{
 			if (dy > 0)
 			{
 				while ((y1 = y1 + 1) != y2)
-					ft_put_pixel(all, x1, y1);
+					pixel_put(env, x1, y1);
 			}
-			else // dy < 0 and dx = 0
+			else
 			{
 				while ((y1 = y1 - 1) != y2)
-					ft_put_pixel(all, x1, y1);
+					pixel_put(env, x1, y1);
 			}
 		}
 	}
@@ -205,8 +213,8 @@ void	ft_line2(int x1, int y1, int x2, int y2, t_env all)
 
 t_env	init_point(t_env s)
 {
-	s.x = (s.e_y - s.e_x);
-	s.y = (s.e_x + s.e_y)/2;
+	s.x = (s.e_y + s.e_x)/2;
+	s.y = (s.e_y - s.e_x);
 	//x1
 	s.x1 = (s.e_y - (s.e_x + 20));
 	s.y1 = ((s.e_x + 20) + s.e_y)/2;
@@ -222,23 +230,26 @@ t_env	init_point(t_env s)
 void	ft_draw_pixel(t_env s)
 {
 	int		z;
+	int		x_tmp;
+	int		y_tmp;
 
-	z = 0;
 	while (s.map[s.y_tab])
 	{
 		while (s.map[s.y_tab][s.x_tab])
 		{
 			z = ft_atoi(s.map[s.y_tab][s.x_tab]);
-			s = init_point(s);
-				ft_line2(s.x, s.y - (z * 10), s.x1, s.y1 - (z * 10), s);
-				ft_line2(s.x1, s.y1 - (z * 10), s.x2, s.y2 - (z * 10), s);
-			s.e_x = s.e_x + (MARGIN);
+			x_tmp = s.x;
+			y_tmp = s.y;
+			s.x = (s.e_x + s.e_y)/2;
+			s.y = (s.e_y - s.e_x);
+			draw_line(s, s.x + 50, s.y + 250 - z*3, x_tmp + 60, y_tmp + 270 - z*3);
+			s.e_x += MARGIN;
 			s.x_tab++;
 		}
-		s.e_y = s.e_y + (MARGIN);
 		s.e_x = 0;
 		s.x_tab = 0;
 		s.y_tab++;
+		s.e_y += MARGIN;
 	}
 }
 

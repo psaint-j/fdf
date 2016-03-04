@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 11:03:37 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/03 17:03:45 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/04 08:15:41 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,16 @@ t_env	check_params(t_env env,char *file)
 
 void	check_line(t_env s)
 {
-	char *line;
+	char	*line;
+	int		i;
 
-	line = NULL;
+	i = 0;
 	while (get_next_line(s.fd, &line) > 0)
 	{
-		s.map[s.j] = ft_strsplit(line, ' ');
-		s.j++;
+		s.map[i] = ft_strsplit(line, ' ');
+		i++;
 	}
+	s.map[i] = NULL;
 }
 
 void	ft_print_tab(char **tab)
