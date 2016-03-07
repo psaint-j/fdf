@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/04 19:07:55 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/07 06:30:45 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@
 #include <unistd.h>
 #include "../libft/libft.h"
 #include "../mlx/mlx.h"
+#include <math.h>
 
 #define BUF_SIZE 2048
 #define WIDTH 900
 #define HEIGHT 700
-#define MARGIN 40
+#define MARGIN 30
 //Constantes 0.5 et 1
 #define C1 0.75
 #define C2 0.75
@@ -61,15 +62,22 @@ typedef struct		s_env
 	float	y3;
 }					t_env;
 
-typedef struct		s_coord
+typedef struct		s_bresenham
 {
-	int		x;
-	int		y;
-	int		z;
-}					t_coord;
+	int		w;
+	int		h;
+	int		longest;
+	int		shortest;
+	int		numerator;
+	int		dx2;
+	int		dy2;
+	int		dx1;
+	int		dy1;
+}					t_bresenham;
 
 
 //initialise les valeur X = 0 or NULL
+t_bresenham		init_bresenham(t_bresenham bres);
 t_env		init_map(t_env env);
 t_env		init_env(t_env env);
 t_env		check_params(t_env env, char *file);

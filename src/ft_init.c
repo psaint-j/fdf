@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 11:03:37 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/04 18:39:30 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/05 21:19:05 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,18 @@ void	ft_print_tab(char **tab)
 		ft_putstr("\t");
 		i++;
 	}
+}
+
+t_bresenham		init_bresenham(t_bresenham bres)
+{
+	bres.h = 0;
+	bres.w = 0;
+	bres.longest = 0;
+	bres.shortest = 0;
+	bres.numerator = 0;
+	bres.dx1 = 0;
+	bres.dy1 = 0;
+	bres.dx2 = 0;
+	bres.dy2 = 0;
+	return (bres);
 }
