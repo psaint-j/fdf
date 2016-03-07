@@ -6,13 +6,13 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:29:35 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/05 21:19:00 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/07 13:51:25 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	usage()
+void	usage(void)
 {
 	ft_putendl("Usage: fdf [file ...]");
 }
