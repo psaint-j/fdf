@@ -6,11 +6,21 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 15:47:46 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/07 15:50:11 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:04:12 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int		find_z3(t_env s)
+{
+	if (s.map[s.y_tab + 1] != NULL)
+	{
+		if (s.map[s.y_tab + 1][s.x_tab])
+			return (ft_atoi(s.map[s.y_tab + 1][s.x_tab]));
+	}
+	return (0);
+}
 
 int		find_z(t_env s, int z)
 {
@@ -33,13 +43,7 @@ int		find_z(t_env s, int z)
 		}
 	}
 	if (z == 3)
-	{
-		if (s.map[s.y_tab + 1] != NULL)
-		{
-			if (s.map[s.y_tab + 1][s.x_tab])
-				return (ft_atoi(s.map[s.y_tab + 1][s.x_tab]));
-		}
-	}
+		return (find_z3(s));
 	return (0);
 }
 

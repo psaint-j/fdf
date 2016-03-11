@@ -6,7 +6,7 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/07 15:45:09 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:08:32 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 void	pixel_put(t_env env, int x, int y)
 {
 	if (ft_strncmp(env.map[env.y_tab][env.x_tab], "0", 1) == 0)
-		mlx_pixel_put(env.mlx, env.win, x, y, WHITE);
+		mlx_pixel_put(env.mlx, env.win, x, y, MAJENTA);
 	else if (ft_strncmp(env.map[env.y_tab][env.x_tab], "-", 1) == 0)
 		mlx_pixel_put(env.mlx, env.win, x, y, CYAN);
 	else
-		mlx_pixel_put(env.mlx, env.win, x, y, MAJENTA);
+		mlx_pixel_put(env.mlx, env.win, x, y, WHITE);
 }
 
 t_bresenham	line_direct(t_bresenham bres)
@@ -92,69 +92,34 @@ void		draw_line(t_env env, int x, int y, int x2, int y2)
 	make_line(bres, env, x, y);
 }
 
-int		find_z(t_env s, int z)
-{
-	if (z == 0)
-	{
-		if (s.map[s.y_tab][s.x_tab])
-			return (ft_atoi(s.map[s.y_tab][s.x_tab]));
-	}
-	if (z == 1)
-	{
-		if (s.map[s.y_tab][s.x_tab + 1])
-			return (ft_atoi(s.map[s.y_tab][s.x_tab + 1]));
-	}
-	if (z == 2)
-	{
-		if (s.map[s.y_tab + 1] != NULL)
-		{
-			if (s.map[s.y_tab + 1][s.x_tab + 1])
-				return (ft_atoi(s.map[s.y_tab + 1][s.x_tab + 1]));
-		}
-	}
-	if (z == 3)
-	{
-		if (s.map[s.y_tab + 1] != NULL)
-		{
-			if (s.map[s.y_tab + 1][s.x_tab])
-				return (ft_atoi(s.map[s.y_tab + 1][s.x_tab]));
-		}
-	}
-	return (0);
-}
-
-t_env	init_point(t_env s)
-{
-	s.x = (s.e_y - s.e_x);
-	s.y = ((s.e_y + s.e_x) / 2) - find_z(s, 0) * 5;
-	s.x1 = (s.e_y - (s.e_x + MARGIN));
-	s.y1 = (((s.e_x + MARGIN) + s.e_y) / 2) - find_z(s, 1) * 5;
-	s.x3 = ((s.e_y + MARGIN) - s.e_x);
-	s.y3 = ((s.e_x + (s.e_y + MARGIN)) / 2) - find_z(s, 3) * 5;
-	s.x2 = ((s.e_y + MARGIN) - (s.e_x + MARGIN));
-	s.y2 = (((s.e_x + MARGIN) + (s.e_y + MARGIN)) / 2) - find_z(s, 2) * 5;
-	return (s);
-}
-
 void	ft_draw_pixel(t_env s)
 {
 	int		w_size;
 	int		h_size;
 
-	w_size = (WIDTH - (MARGIN * s.xmax)) / 2;
-	h_size = (HEIGHT - (MARGIN * s.xmax)) / 2;
+	//w_size = (WIDTH - (MARGIN * s.xmax)) / 4;
+	w_size = 150;
+	h_size = 250;
 	while (s.map[s.y_tab])
 	{
 		while (s.map[s.y_tab][s.x_tab])
 		{
+			if (s.map[s.y_tab][s.x_tab + 1] == NULL)
+				break ;
 			s = init_point(s);
-			draw_line(s, -s.x + w_size, s.y + h_size, -s.x1 + w_size, s.y1 + h_size);
-			draw_line(s, -s.x + w_size, s.y + h_size, -s.x3 + w_size, s.y3 + h_size);
-			draw_line(s, -s.x3 + w_size, s.y3 + h_size, -s.x2 + w_size, s.y2 + h_size);
-			draw_line(s, -s.x2 + w_size, s.y2 + h_size, -s.x1 + w_size, s.y1 + h_size);
+			draw_line(s, -s.x + w_size, s.y + h_size,
+					-s.x1 + w_size, s.y1 + h_size);
+			draw_line(s, -s.x + w_size, s.y + h_size,
+					-s.x3 + w_size, s.y3 + h_size);
+			draw_line(s, -s.x3 + w_size, s.y3 + h_size,
+					-s.x2 + w_size, s.y2 + h_size);
+			draw_line(s, -s.x2 + w_size, s.y2 + h_size,
+					-s.x1 + w_size, s.y1 + h_size);
 			s.e_x += MARGIN;
 			s.x_tab++;
 		}
+		if (s.map[s.y_tab + 1] == NULL)
+			break ;
 		s.e_x = 0;
 		s.x_tab = 0;
 		s.y_tab++;

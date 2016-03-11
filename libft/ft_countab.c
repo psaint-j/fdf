@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_countab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 15:26:00 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/11 15:54:10 by psaint-j         ###   ########.fr       */
+/*   Created: 2016/03/11 15:49:13 by psaint-j          #+#    #+#             */
+/*   Updated: 2016/03/11 15:50:39 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int		ft_countab(char **tab)
 {
-	unsigned int i;
+	int		i;
 
 	i = 0;
-	while (i < n)
-	{
-		if (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
-			i++;
-		else
-			return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
-	}
-	return (0);
+	while (tab[i])
+		i++;
+	return (i);
 }

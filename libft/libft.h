@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/07 18:42:56 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/01/29 14:04:51 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:56:36 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <string.h>
 # define BUFF_SIZE 4048
+
 typedef struct	s_list
 {
 	void			*content;
@@ -90,6 +91,7 @@ char			*ft_strupcase(char *str);
 char			*ft_strlowcase(char *str);
 void			ft_printcolor(char *color, char *str);
 char			*ft_strrev(char *str);
+int				ft_countab(char **tab);
 # define C_BLACK        "\033[30m"
 # define C_RED          "\033[31m"
 # define C_GREEN        "\033[32m"

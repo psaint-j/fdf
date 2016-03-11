@@ -6,7 +6,7 @@
 #    By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/27 11:06:20 by psaint-j          #+#    #+#              #
-#    Updated: 2016/01/29 14:02:17 by psaint-j         ###   ########.fr        #
+#    Updated: 2016/03/11 15:47:45 by psaint-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,8 @@ SRC =   ft_bzero.c \
 		ft_strupcase.c\
 		ft_printcolor.c\
 		ft_strrev.c\
-		get_next_line.c
+		get_next_line.c\
+		ft_countab.c
 
 OBJ =  ft_bzero.o \
 	   ft_memalloc.o \
@@ -140,7 +141,8 @@ OBJ =  ft_bzero.o \
 	   ft_strupcase.o\
 	   ft_printcolor.o\
 	   ft_strrev.o\
-		get_next_line.o
+	   get_next_line.o\
+	   ft_countab.o
 
 all: $(NAME)
 

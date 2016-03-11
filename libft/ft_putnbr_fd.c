@@ -6,13 +6,13 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/17 14:54:41 by psaint-j          #+#    #+#             */
-/*   Updated: 2015/02/17 18:37:31 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:53:03 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == 0)
 		ft_putchar_fd('0', fd);
