@@ -6,15 +6,18 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:29:35 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/11 15:11:04 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/14 13:44:33 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	usage(void)
+void	usage(int usage)
 {
-	ft_putendl("Usage: fdf [file ...]");
+	if (usage == 1)
+		ft_putendl("Usage: fdf [file ...]");
+	if (usage == 2)
+		ft_putendl("Error Map formating...");
 }
 
 int		main(int ac, char **av)
@@ -34,7 +37,12 @@ int		main(int ac, char **av)
 			close(s.fd);
 			mlx_loop(s.mlx);
 		}
+		else
+		{
+			usage(2);
+			return (0);
+		}
 	}
-	usage();
+	usage(1);
 	return (0);
 }

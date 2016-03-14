@@ -6,7 +6,7 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/11 16:08:32 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/14 15:08:00 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #define MAJENTA 0x0FF1493
 #define CYAN 0x0FFFF
 
-void	pixel_put(t_env env, int x, int y)
+void		pixel_put(t_env env, int x, int y)
 {
 	if (ft_strncmp(env.map[env.y_tab][env.x_tab], "0", 1) == 0)
 		mlx_pixel_put(env.mlx, env.win, x, y, MAJENTA);
@@ -68,13 +68,11 @@ void		make_line(t_bresenham bres, t_env env, int x, int y)
 	}
 }
 
-void		draw_line(t_env env, int x, int y, int x2, int y2)
+void		draw_line(t_env env, t_bresenham bres)
 {
-	t_bresenham	bres;
-
 	bres = init_bresenham(bres);
-	bres.w = x2 - x;
-	bres.h = y2 - y;
+	bres.w = bres.x1 - bres.x;
+	bres.h = bres.y1 - bres.y;
 	bres = line_direct(bres);
 	bres.longest = abs(bres.w);
 	bres.shortest = abs(bres.h);
@@ -89,37 +87,22 @@ void		draw_line(t_env env, int x, int y, int x2, int y2)
 		bres.dx2 = 0;
 	}
 	bres.numerator = bres.longest >> 1;
-	make_line(bres, env, x, y);
+	make_line(bres, env, bres.x, bres.y);
 }
 
-void	ft_draw_pixel(t_env s)
+void		ft_draw_pixel(t_env s)
 {
-	int		w_size;
-	int		h_size;
+	t_bresenham bres;
 
-	//w_size = (WIDTH - (MARGIN * s.xmax)) / 4;
-	w_size = 150;
-	h_size = 250;
 	while (s.map[s.y_tab])
 	{
 		while (s.map[s.y_tab][s.x_tab])
 		{
-			if (s.map[s.y_tab][s.x_tab + 1] == NULL)
-				break ;
 			s = init_point(s);
-			draw_line(s, -s.x + w_size, s.y + h_size,
-					-s.x1 + w_size, s.y1 + h_size);
-			draw_line(s, -s.x + w_size, s.y + h_size,
-					-s.x3 + w_size, s.y3 + h_size);
-			draw_line(s, -s.x3 + w_size, s.y3 + h_size,
-					-s.x2 + w_size, s.y2 + h_size);
-			draw_line(s, -s.x2 + w_size, s.y2 + h_size,
-					-s.x1 + w_size, s.y1 + h_size);
+			draw_map(s, bres);
 			s.e_x += MARGIN;
 			s.x_tab++;
 		}
-		if (s.map[s.y_tab + 1] == NULL)
-			break ;
 		s.e_x = 0;
 		s.x_tab = 0;
 		s.y_tab++;
