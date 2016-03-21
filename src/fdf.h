@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/14 15:03:52 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/21 19:19:08 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define BUF_SIZE 2048
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MARGIN 40
 # define C1 4
 # define C2 0.75
 
@@ -37,6 +36,7 @@ typedef struct	s_env
 	int			y_tab;
 	int			i;
 	int			j;
+	float		margin;
 	int			xmax;
 	int			ymax;
 	char		***map;
@@ -57,7 +57,7 @@ typedef struct	s_env
 	float		y2;
 	float		x3;
 	float		y3;
-	int			v_map;
+	int			usage;
 }				t_env;
 
 typedef struct	s_bresenham
@@ -82,7 +82,7 @@ t_env			init_map(t_env env);
 t_env			init_env(t_env env);
 void			draw_line(t_env env, t_bresenham bres);
 void			draw_map(t_env s, t_bresenham bres);
-int				check_params(t_env env, char *file);
+t_env			check_params(t_env env, char *file);
 void			ft_tabstr(char **z, int y, char ***map);
 void			ft_print_tab(char **tab);
 void			print_mlx(t_env env, char **map, int x);
@@ -91,4 +91,8 @@ void			ft_draw_pixel(t_env s);
 void			check_line(t_env s);
 int				find_z(t_env s, int z);
 t_env			init_point(t_env s);
+void			free_tab_2(char **tab);
+void			free_tab(char ***tab);
+void			free_map(t_env s);
+int				calcul_margin(t_env env);
 #endif

@@ -6,7 +6,7 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/14 15:08:00 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/21 19:23:46 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,12 @@ void		ft_draw_pixel(t_env s)
 		{
 			s = init_point(s);
 			draw_map(s, bres);
-			s.e_x += MARGIN;
+			s.e_x += s.margin;
 			s.x_tab++;
 		}
 		s.e_x = 0;
 		s.x_tab = 0;
 		s.y_tab++;
-		s.e_y += MARGIN;
+		s.e_y += s.margin;
 	}
 }

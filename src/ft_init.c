@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 11:03:37 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/11 16:04:05 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/21 19:26:42 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_env			init_env(t_env env)
 	env.y_tab = 0;
 	env.i = 0;
 	env.j = 0;
-	env.k = MARGIN;
+	env.margin = 20;
+	env.k = env.margin;
 	env.xmax = 0;
 	env.ymax = 0;
 	env.tab_tmp = NULL;
@@ -34,23 +35,17 @@ t_env			init_env(t_env env)
 	env.key_down = 3;
 	env.z_x = 0;
 	env.z_y = 0;
-	env.v_map = 0;
+	env.usage = 0;
 	return (env);
 }
 
 t_env			init_map(t_env env)
 {
-	int		size;
-
-	if (env.xmax > env.ymax)
-		size = env.xmax;
-	else
-		size = env.ymax;
-	env.map = malloc(999999999);
+	env.map = malloc(sizeof(char ***) * env.ymax + 1);
 	return (env);
 }
 
-int				check_params(t_env env, char *file)
+t_env			check_params(t_env env, char *file)
 {
 	char	*line;
 	int		db[3];
@@ -64,14 +59,15 @@ int				check_params(t_env env, char *file)
 		tab = ft_strsplit(line, ' ');
 		db[LEN] = ft_countab(tab);
 		if (env.ymax > 0 && db[LEN] != db[LEN_TMP])
-			return (-1);
+		{
+			env.usage = -1;
+			return (env);
+		}
 		env.ymax++;
 	}
 	close(db[LEN]);
 	env.xmax = db[LEN];
-	ft_putnbr(env.ymax);
-	ft_putnbr(env.xmax);
-	return (env.xmax);
+	return (env);
 }
 
 void			check_line(t_env s)

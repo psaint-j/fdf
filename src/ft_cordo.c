@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 15:47:46 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/14 15:09:07 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/21 19:25:13 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	draw_map(t_env s, t_bresenham bres)
 	int		w_size;
 	int		h_size;
 
-	h_size = 250;
-	w_size = 150;
+	h_size = (HEIGHT - (s.margin * s.ymax)) / 10;
+	w_size = (WIDTH - (s.margin * s.xmax)) / 2;
 	bres.x = -s.x + w_size;
 	bres.y = s.y + h_size;
 	bres.x1 = -s.x1 + w_size;
@@ -80,11 +80,11 @@ t_env	init_point(t_env s)
 {
 	s.x = (s.e_y - s.e_x);
 	s.y = ((s.e_y + s.e_x) / 2) - find_z(s, 0) * C1;
-	s.x1 = (s.e_y - (s.e_x + MARGIN));
-	s.y1 = (((s.e_x + MARGIN) + s.e_y) / 2) - find_z(s, 1) * C1;
-	s.x3 = ((s.e_y + MARGIN) - s.e_x);
-	s.y3 = ((s.e_x + (s.e_y + MARGIN)) / 2) - find_z(s, 3) * C1;
-	s.x2 = ((s.e_y + MARGIN) - (s.e_x + MARGIN));
-	s.y2 = (((s.e_x + MARGIN) + (s.e_y + MARGIN)) / 2) - find_z(s, 2) * C1;
+	s.x1 = (s.e_y - (s.e_x + s.margin));
+	s.y1 = (((s.e_x + s.margin) + s.e_y) / 2) - find_z(s, 1) * C1;
+	s.x3 = ((s.e_y + s.margin) - s.e_x);
+	s.y3 = ((s.e_x + (s.e_y + s.margin)) / 2) - find_z(s, 3) * C1;
+	s.x2 = ((s.e_y + s.margin) - (s.e_x + s.margin));
+	s.y2 = (((s.e_x + s.margin) + (s.e_y + s.margin)) / 2) - find_z(s, 2) * C1;
 	return (s);
 }
