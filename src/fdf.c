@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:29:35 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/21 19:31:27 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/24 19:04:31 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		main(int ac, char **av)
 {
 	t_env	s;
 
+	s.usage = 0;
 	if (ac == 2)
 	{
 		s = init_env(s);
@@ -63,6 +64,12 @@ int		main(int ac, char **av)
 			check_line(s);
 			mlx_key_hook(s.win, key_hook, &s);
 			s.margin = calcul_margin(s);
+			ft_putstr("X : ");
+			ft_putnbr(s.margin * s.xmax);
+			ft_putstr("\n");
+			ft_putstr("Y : ");
+			ft_putnbr(s.margin * s.ymax);
+			ft_putstr("\n");
 			ft_draw_pixel(s);
 			close(s.fd);
 			mlx_loop(s.mlx);

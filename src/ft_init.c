@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 11:03:37 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/21 19:26:42 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/24 14:44:12 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_env			init_env(t_env env)
 	env.key_down = 3;
 	env.z_x = 0;
 	env.z_y = 0;
-	env.usage = 0;
 	return (env);
 }
 

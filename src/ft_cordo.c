@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 15:47:46 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/21 19:25:13 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/24 19:04:28 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,33 +46,52 @@ int		find_z(t_env s, int z)
 		return (find_z3(s));
 	return (0);
 }
+#include <stdio.h>
 
-void	draw_map(t_env s, t_bresenham bres)
+t_env	center_map(t_env s)
 {
 	int		w_size;
 	int		h_size;
+	float	d;
+	float	L;
+	float	l;
 
-	h_size = (HEIGHT - (s.margin * s.ymax)) / 10;
-	w_size = (WIDTH - (s.margin * s.xmax)) / 2;
-	bres.x = -s.x + w_size;
-	bres.y = s.y + h_size;
-	bres.x1 = -s.x1 + w_size;
-	bres.y1 = s.y1 + h_size;
+	L = s.margin * s.xmax;
+	l = s.margin * s.ymax;
+	d = sqrt((l * l) + L);
+	s.h_size = (HEIGHT - d) / 2;
+	s.w_size = (WIDTH - d) / 2;
+	printf("d = %f\n",d);
+	printf("h_size = %f\nw_size =  %f\n", s.h_size,s.w_size);
+	if(d >= 1000)
+	{
+		printf(">= 1000 \n");
+	}
+	return (s);
+}
+
+
+void	draw_map(t_env s, t_bresenham bres)
+{
+	bres.x = -s.x + s.w_size;
+	bres.y = s.y + s.h_size;
+	bres.x1 = -s.x1 + s.w_size;
+	bres.y1 = s.y1 + s.h_size;
 	draw_line(s, bres);
-	bres.x = -s.x + w_size;
-	bres.y = s.y + h_size;
-	bres.x1 = -s.x3 + w_size;
-	bres.y1 = s.y3 + h_size;
+	bres.x = -s.x + s.w_size;
+	bres.y = s.y + s.h_size;
+	bres.x1 = -s.x3 + s.w_size;
+	bres.y1 = s.y3 + s.h_size;
 	draw_line(s, bres);
-	bres.x = -s.x3 + w_size;
-	bres.y = s.y3 + h_size;
-	bres.x1 = -s.x2 + w_size;
-	bres.y1 = s.y2 + h_size;
+	bres.x = -s.x3 + s.w_size;
+	bres.y = s.y3 + s.h_size;
+	bres.x1 = -s.x2 + s.w_size;
+	bres.y1 = s.y2 + s.h_size;
 	draw_line(s, bres);
-	bres.x = -s.x2 + w_size;
-	bres.y = s.y2 + h_size;
-	bres.x1 = -s.x1 + w_size;
-	bres.y1 = s.y1 + h_size;
+	bres.x = -s.x2 + s.w_size;
+	bres.y = s.y2 + s.h_size;
+	bres.x1 = -s.x1 + s.w_size;
+	bres.y1 = s.y1 + s.h_size;
 	draw_line(s, bres);
 }
 

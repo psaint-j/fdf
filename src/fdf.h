@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/21 19:19:08 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/24 19:04:30 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define BUF_SIZE 2048
 # define WIDTH 1920
 # define HEIGHT 1080
-# define C1 4
+# define C1 0.7
 # define C2 0.75
 
 typedef struct	s_env
@@ -47,6 +47,8 @@ typedef struct	s_env
 	int			key_up;
 	int			key_down;
 	int			k;
+	float		w_size;
+	float		h_size;
 	float		z_x;
 	float		z_y;
 	float		x;

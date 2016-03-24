@@ -6,7 +6,7 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/21 19:23:46 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/24 14:44:08 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define U s.key_up
 #define D s.key_down
 #define WHITE 0x00FFFFFF
-#define MAJENTA 0x0FF1493
+#define MAJENTA 0x00FF00
 #define CYAN 0x0FFFF
 
 void		pixel_put(t_env env, int x, int y)
@@ -94,6 +94,7 @@ void		ft_draw_pixel(t_env s)
 {
 	t_bresenham bres;
 
+	bres.h = 0;
 	while (s.map[s.y_tab])
 	{
 		while (s.map[s.y_tab][s.x_tab])
