@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 15:47:46 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/24 19:04:28 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/29 12:39:15 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ t_env	center_map(t_env s)
 	float	L;
 	float	l;
 
+	w_size = 0;
+	h_size = 0;
 	L = s.margin * s.xmax;
 	l = s.margin * s.ymax;
 	d = sqrt((l * l) + L);
 	s.h_size = (HEIGHT - d) / 2;
-	s.w_size = (WIDTH - d) / 2;
+	s.w_size = d + 150;
 	printf("d = %f\n",d);
 	printf("h_size = %f\nw_size =  %f\n", s.h_size,s.w_size);
 	if(d >= 1000)

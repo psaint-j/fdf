@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/24 19:04:30 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/29 17:04:24 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct	s_env
 	int			xmax;
 	int			ymax;
 	char		***map;
-	char		**tab_tmp;
 	int			e_y;
 	int			e_x;
 	int			fd;
@@ -80,7 +79,7 @@ typedef struct	s_bresenham
 }				t_bresenham;
 
 t_bresenham		init_bresenham(t_bresenham bres);
-t_env			init_map(t_env env);
+t_env			init_map(t_env env, int size);
 t_env			init_env(t_env env);
 void			draw_line(t_env env, t_bresenham bres);
 void			draw_map(t_env s, t_bresenham bres);
@@ -90,11 +89,13 @@ void			ft_print_tab(char **tab);
 void			print_mlx(t_env env, char **map, int x);
 int				key_hook(int keycode, t_env param);
 void			ft_draw_pixel(t_env s);
-void			check_line(t_env s);
+int				check_line(t_env s);
 int				find_z(t_env s, int z);
 t_env			init_point(t_env s);
 void			free_tab_2(char **tab);
 void			free_tab(char ***tab);
 void			free_map(t_env s);
 int				calcul_margin(t_env env);
+t_env			center_map(t_env s);
+void			free_tab(char ***tab);
 #endif

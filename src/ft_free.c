@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 16:54:53 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/21 15:38:23 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/29 17:03:25 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void		free_tab_2(char **tab)
 		free(tab[i]);
 		i++;
 	}
-	free(tab);
 }
 
 void		free_tab(char ***tab)
@@ -32,9 +31,11 @@ void		free_tab(char ***tab)
 	i = 0;
 	while (tab[i])
 	{
+		free_tab_2(tab[i]);
 		free(tab[i]);
 		i++;
 	}
+	free(tab);
 }
 
 void		free_map(t_env s)

@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 11:03:37 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/24 14:44:12 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/03/29 17:05:00 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_env			init_env(t_env env)
 	env.k = env.margin;
 	env.xmax = 0;
 	env.ymax = 0;
-	env.tab_tmp = NULL;
 	env.e_y = 0;
 	env.e_x = 0;
 	env.fd = 0;
@@ -38,9 +37,9 @@ t_env			init_env(t_env env)
 	return (env);
 }
 
-t_env			init_map(t_env env)
+t_env			init_map(t_env env, int size)
 {
-	env.map = malloc(sizeof(char ***) * env.ymax + 1);
+	env.map = malloc(sizeof(char ***) * size + 1);
 	return (env);
 }
 
@@ -48,39 +47,42 @@ t_env			check_params(t_env env, char *file)
 {
 	char	*line;
 	int		db[3];
-	char	**tab;
 
 	db[LEN] = -1;
 	db[FD] = open(file, O_RDONLY);
 	while (get_next_line(db[FD], &line) > 0)
 	{
 		db[LEN_TMP] = db[LEN];
-		tab = ft_strsplit(line, ' ');
-		db[LEN] = ft_countab(tab);
+		env.map[env.ymax] = ft_strsplit(line, ' ');
+		db[LEN] = ft_countab(env.map[env.ymax]);
 		if (env.ymax > 0 && db[LEN] != db[LEN_TMP])
 		{
 			env.usage = -1;
 			return (env);
 		}
 		env.ymax++;
+		free(line);
 	}
-	close(db[LEN]);
+	free(line);
+	env.map[env.ymax] = NULL;
+	close(db[FD]);
 	env.xmax = db[LEN];
 	return (env);
 }
 
-void			check_line(t_env s)
+int				check_line(t_env s)
 {
-	char	*line;
 	int		i;
+	char	*line;
 
 	i = 0;
 	while (get_next_line(s.fd, &line) > 0)
 	{
-		s.map[i] = ft_strsplit(line, ' ');
+		free(line);
 		i++;
 	}
-	s.map[i] = NULL;
+	free(line);
+	return (i);
 }
 
 t_bresenham		init_bresenham(t_bresenham bres)
