@@ -6,27 +6,24 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/29 17:04:24 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/04/01 17:08:19 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include <fcntl.h>
-# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/uio.h>
-# include <unistd.h>
-# include <unistd.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include <math.h>
+# include <errno.h>
 
-# define BUF_SIZE 2048
+#define BUF_SIZE 2048
 # define WIDTH 1920
 # define HEIGHT 1080
-# define C1 0.7
-# define C2 0.75
+# define C1 0.999
 
 typedef struct	s_env
 {
@@ -34,8 +31,6 @@ typedef struct	s_env
 	void		*win;
 	int			x_tab;
 	int			y_tab;
-	int			i;
-	int			j;
 	float		margin;
 	int			xmax;
 	int			ymax;
@@ -43,13 +38,8 @@ typedef struct	s_env
 	int			e_y;
 	int			e_x;
 	int			fd;
-	int			key_up;
-	int			key_down;
-	int			k;
 	float		w_size;
 	float		h_size;
-	float		z_x;
-	float		z_y;
 	float		x;
 	float		y;
 	float		x1;
@@ -78,6 +68,7 @@ typedef struct	s_bresenham
 	float		y1;
 }				t_bresenham;
 
+t_env			init_fdf(t_env s, char *file);
 t_bresenham		init_bresenham(t_bresenham bres);
 t_env			init_map(t_env env, int size);
 t_env			init_env(t_env env);
@@ -94,7 +85,6 @@ int				find_z(t_env s, int z);
 t_env			init_point(t_env s);
 void			free_tab_2(char **tab);
 void			free_tab(char ***tab);
-void			free_map(t_env s);
 int				calcul_margin(t_env env);
 t_env			center_map(t_env s);
 void			free_tab(char ***tab);

@@ -6,13 +6,11 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 08:03:06 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/24 14:44:08 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/04/01 15:21:52 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./fdf.h"
-#define U s.key_up
-#define D s.key_down
 #define WHITE 0x00FFFFFF
 #define MAJENTA 0x00FF00
 #define CYAN 0x0FFFF
@@ -20,11 +18,14 @@
 void		pixel_put(t_env env, int x, int y)
 {
 	if (ft_strncmp(env.map[env.y_tab][env.x_tab], "0", 1) == 0)
-		mlx_pixel_put(env.mlx, env.win, x, y, MAJENTA);
+		mlx_pixel_put(env.mlx, env.win, x + env.w_size + 330,
+				y + env.h_size + 150, MAJENTA);
 	else if (ft_strncmp(env.map[env.y_tab][env.x_tab], "-", 1) == 0)
-		mlx_pixel_put(env.mlx, env.win, x, y, CYAN);
+		mlx_pixel_put(env.mlx, env.win, x + env.w_size + 330,
+				y + env.h_size + 150, CYAN);
 	else
-		mlx_pixel_put(env.mlx, env.win, x, y, WHITE);
+		mlx_pixel_put(env.mlx, env.win, x + env.w_size + 330,
+				y + env.h_size + 150, WHITE);
 }
 
 t_bresenham	line_direct(t_bresenham bres)

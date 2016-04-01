@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 11:03:37 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/29 17:05:00 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/04/01 16:52:14 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ t_env			init_env(t_env env)
 	env.win = mlx_new_window(env.mlx, WIDTH, HEIGHT, "Fdf");
 	env.x_tab = 0;
 	env.y_tab = 0;
-	env.i = 0;
-	env.j = 0;
-	env.margin = 20;
-	env.k = env.margin;
+	env.margin = 50;
 	env.xmax = 0;
 	env.ymax = 0;
 	env.e_y = 0;
 	env.e_x = 0;
 	env.fd = 0;
-	env.key_up = 3;
-	env.key_down = 3;
-	env.z_x = 0;
-	env.z_y = 0;
 	return (env);
 }
 
 t_env			init_map(t_env env, int size)
 {
+	ft_putnbr(env.fd);
+	ft_putendl("\n");
+	if (env.fd < 0)
+	{
+		env.usage = 2;
+		return (env);
+	}
 	env.map = malloc(sizeof(char ***) * size + 1);
 	return (env);
 }

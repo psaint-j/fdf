@@ -6,7 +6,7 @@
 /*   By: psaint-j <psaint-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 15:50:55 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/16 11:51:14 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/04/01 14:34:50 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,7 @@
 
 int		key_hook(int keycode, t_env param)
 {
-	ft_putstr("Keycode : ");
-	ft_putnbr(keycode);
-	ft_putstr("\n");
-	if (keycode == 126)
-	{
-		param.key_up++;
-		param.key_down++;
-	}
-	if (keycode == 125)
-	{
-		param.key_up--;
-		param.key_down--;
-	}
+	(void)param;
 	if (keycode == 53)
 		exit(1);
 	return (0);

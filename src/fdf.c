@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:29:35 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/29 16:35:27 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/04/01 17:43:31 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ int		calcul_margin(t_env s)
 	return (s.margin);
 }
 
+t_env	init_fdf(t_env s, char *file)
+{
+	int		size;
+
+	s = init_env(s);
+	if (!(s.fd = open(file, O_RDONLY)))
+		exit(-2);
+	size = check_line(s);
+	s = init_map(s, size);
+	close(s.fd);
+	s = check_params(s, file);
+	return (s);
+}
+
 int		main(int ac, char **av)
 {
 	t_env	s;
@@ -55,22 +69,12 @@ int		main(int ac, char **av)
 	s.usage = 0;
 	if (ac == 2)
 	{
-		s = init_env(s);
-		s.fd = open(av[1], O_RDONLY);
-		s = init_map(s, check_line(s));
-		close(s.fd);
-		s = check_params(s, av[1]);
+		s = init_fdf(s, av[1]);
 		if (s.usage == 0)
 		{
 			mlx_key_hook(s.win, key_hook, &s);
 			s.margin = calcul_margin(s);
 			s = center_map(s);
-			ft_putstr("X : ");
-			ft_putnbr(s.margin * s.xmax);
-			ft_putstr("\n");
-			ft_putstr("Y : ");
-			ft_putnbr(s.margin * s.ymax);
-			ft_putstr("\n");
 			ft_draw_pixel(s);
 			free_tab(s.map);
 			mlx_loop(s.mlx);

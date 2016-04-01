@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 16:54:53 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/03/29 17:03:25 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/04/01 14:35:27 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,4 @@ void		free_tab(char ***tab)
 		i++;
 	}
 	free(tab);
-}
-
-void		free_map(t_env s)
-{
-	int		y;
-
-	y = 0;
-	while (s.map[y])
-	{
-		free_tab_2(s.map[y]);
-		y++;
-	}
 }
