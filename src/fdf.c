@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:29:35 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/04/01 17:43:31 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/04/04 17:35:30 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	usage(int usage)
 {
 	if (usage == 1)
-		ft_putendl("Usage: fdf [file ...]");
+		ft_putendl("fdf:Usage: fdf [file ...]");
 	if (usage == 2)
-		ft_putendl("Error Map formating...");
+		ft_putendl("fdf:Error Map formating...");
+	if (usage == 3)
+		ft_putendl("fdf:Something wrong with the file");
 }
 
 int		calcul_margin(t_env s)
@@ -33,12 +35,12 @@ int		calcul_margin(t_env s)
 	{
 		if (taille[0] > taille[1])
 		{
-			ntaille[0] = WIDTH / taille[0];
+			ntaille[0] = 800 / taille[0];
 			s.margin *= ntaille[0];
 		}
 		else if (taille[0] <= taille[1])
 		{
-			ntaille[1] = HEIGHT / taille[1];
+			ntaille[1] = 600 / taille[1];
 			s.margin *= ntaille[1];
 		}
 		if (s.margin <= 0)

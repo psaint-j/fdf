@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 12:17:17 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/04/01 17:08:19 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/04/04 14:51:03 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <math.h>
 # include <errno.h>
 
-#define BUF_SIZE 2048
+# define BUF_SIZE 2048
 # define WIDTH 1920
 # define HEIGHT 1080
 # define C1 0.999
@@ -88,4 +88,5 @@ void			free_tab(char ***tab);
 int				calcul_margin(t_env env);
 t_env			center_map(t_env s);
 void			free_tab(char ***tab);
+void			usage(int usage);
 #endif

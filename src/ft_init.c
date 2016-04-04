@@ -6,7 +6,7 @@
 /*   By: psaint-j <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 11:03:37 by psaint-j          #+#    #+#             */
-/*   Updated: 2016/04/01 16:52:14 by psaint-j         ###   ########.fr       */
+/*   Updated: 2016/04/04 17:35:29 by psaint-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_env			init_env(t_env env)
 	env.win = mlx_new_window(env.mlx, WIDTH, HEIGHT, "Fdf");
 	env.x_tab = 0;
 	env.y_tab = 0;
-	env.margin = 50;
+	env.margin = 30;
 	env.xmax = 0;
 	env.ymax = 0;
 	env.e_y = 0;
@@ -32,8 +32,6 @@ t_env			init_env(t_env env)
 
 t_env			init_map(t_env env, int size)
 {
-	ft_putnbr(env.fd);
-	ft_putendl("\n");
 	if (env.fd < 0)
 	{
 		env.usage = 2;
@@ -80,6 +78,11 @@ int				check_line(t_env s)
 	{
 		free(line);
 		i++;
+	}
+	if (i == 0)
+	{
+		usage(3);
+		exit(1);
 	}
 	free(line);
 	return (i);
